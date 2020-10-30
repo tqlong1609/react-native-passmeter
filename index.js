@@ -14,7 +14,7 @@ const PassMeter = props => {
         [animateColor, setAnimateColor] = useState(new Animated.Value(0))
 
     useEffect(() => {
-        Animated.spring(animateVal, { bounciness: 15, toValue: barLength * (props.password.length / props.maxLength) }).start()
+        Animated.spring(animateVal, { bounciness: 15, toValue: barLength * (props.password.length / props.maxLength), useNativeDriver: false }).start()
         let passPoint = 0
 
         if (props.password.length > 0 && props.password.length < props.minLength)
@@ -23,7 +23,7 @@ const PassMeter = props => {
             regexArr.forEach(rgx => rgx.test(props.password) ? passPoint += 1 : null)
             setPassStat(props.labels[passPoint])
         }
-        Animated.timing(animateColor, { toValue: passPoint, duration: 300 }).start()
+        Animated.timing(animateColor, { toValue: passPoint, duration: 300, useNativeDriver: false }).start()
 
     }, [props.password])
 
@@ -34,8 +34,9 @@ const PassMeter = props => {
 
     return (
         <View style={{ alignSelf: 'center' }}>
-            <View style={styles.backBar} />
-            <Animated.View style={[styles.mainBar, { backgroundColor: interpolateColor, width: animateVal }]} />
+            <View style={[styles.backBar, { height: props.height }]} />
+            <Animated.View
+                style={[styles.mainBar, { backgroundColor: interpolateColor, width: animateVal, height: props.height }]} />
             {
                 props.showLabels ?
                     props.password.length != 0 ?
