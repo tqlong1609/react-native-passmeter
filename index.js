@@ -6,7 +6,6 @@ const
     deviceWindow = Dimensions.get('window'),
     regexArr = [/[a-z]/, /[A-Z]/, /[0-9]/, /[^A-Za-z0-9]/]
 
-//heello
 const PassMeter = props => {
     const
         barLength = props.width ? props.width : deviceWindow.width * 0.9,
@@ -23,6 +22,9 @@ const PassMeter = props => {
         else {
             regexArr.forEach(rgx => rgx.test(props.password) ? passPoint += 1 : null)
             setPassStat(props.labels[passPoint])
+            if (passPoint > props.maxStrong) {
+                props.onStrongPass && props.onStrongPass()
+            }
         }
         Animated.timing(animateColor, { toValue: passPoint, duration: 300, useNativeDriver: false }).start()
 
