@@ -9,7 +9,7 @@ const
 //heello
 const PassMeter = props => {
     const
-        barLength = deviceWindow.width * 0.9,
+        barLength = props.width ? props.width : deviceWindow.width * 0.9,
         [passStat, setPassStat] = useState('Weak'),
         [animateVal, setAnimateVal] = useState(new Animated.Value(0)),
         [animateColor, setAnimateColor] = useState(new Animated.Value(0))
