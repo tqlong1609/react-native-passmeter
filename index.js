@@ -22,9 +22,9 @@ const PassMeter = props => {
         else {
             regexArr.forEach(rgx => rgx.test(props.password) ? passPoint += 1 : null)
             setPassStat(props.labels[passPoint])
-            if (passPoint > props.maxStrong) {
-                props.onStrongPass && props.onStrongPass()
-            }
+            // if (passPoint > props.maxStrong) {
+            //     props.onStrongPass && props.onStrongPass()
+            // }
         }
         Animated.timing(animateColor, { toValue: passPoint, duration: 300, useNativeDriver: false }).start()
 
