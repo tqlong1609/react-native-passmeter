@@ -6,6 +6,7 @@ const
     deviceWindow = Dimensions.get('window'),
     regexArr = [/[a-z]/, /[A-Z]/, /[0-9]/, /[^A-Za-z0-9]/]
 
+//heello
 const PassMeter = props => {
     const
         barLength = deviceWindow.width * 0.9,
@@ -34,7 +35,7 @@ const PassMeter = props => {
 
     return (
         <View style={{ alignSelf: 'center' }}>
-            <View style={[styles.backBar, { height: props.height }]} />
+            <View style={[styles.backBar, { height: props.height, width: props.width }]} />
             <Animated.View
                 style={[styles.mainBar, { backgroundColor: interpolateColor, width: animateVal, height: props.height }]} />
             {
